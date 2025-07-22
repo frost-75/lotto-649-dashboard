@@ -17,7 +17,9 @@ COOLDOWN_HOURS = 24
 
 # ------------------ GOOGLE SHEETS AUTH ------------------
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", scope)
+import json
+creds_dict = dict(st.secrets["GOOGLE_SHEETS_CREDENTIALS"])
+creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
 client = gspread.authorize(creds)
 sheet = client.open(SHEET_NAME).sheet1
 log_sheet = client.open(SHEET_NAME).worksheet(LOG_SHEET)
