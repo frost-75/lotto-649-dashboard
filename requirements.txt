@@ -4,4 +4,3 @@ oauth2client
 pandas
 numpy
 scikit-learn
-tensorflow
